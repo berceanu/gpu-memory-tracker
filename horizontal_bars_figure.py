@@ -7,7 +7,6 @@ from typing import ClassVar, Tuple
 import numpy as np
 from matplotlib import axes, figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-from util import normalize_to_interval
 
 
 def random_string_of_length(n):
@@ -19,6 +18,11 @@ def divide_chunks(iterable, chunk_size):
         yield iterable[i : i + chunk_size]
 
 
+def normalize_to_interval(a, b, data):
+    """Given the `data` array, normalize its values in the [a, b] interval."""
+    d = np.atleast_1d(data.copy())
+    norm_data = (b - a) * (d - d.min()) / (d.max() - d.min()) + a
+    return norm_data
 
 @dataclass
 class Tick:
