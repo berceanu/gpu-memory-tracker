@@ -5,4 +5,5 @@ Tracks GPU memory usage over time as your simulation code is running
 
 ```console
 $ micromamba create -f env.yml
+$ micromamba activate gpumonenv
 ```
