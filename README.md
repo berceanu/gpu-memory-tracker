@@ -37,7 +37,7 @@ GPU-fd00ec2b-bc85-ee6f-cf6a-a92103974651          373  221.120705  93.295847    
 nvml_20230531-214237.csv was recorded over the time interval from 2023-05-31 21:43:37.124133 to 2023-06-01 16:41:26.214446.
 ```
 
-Running `nvml_reader.py` will also generate two plots, one for memory and another for power usage over time, for the `fbpic` PIC code running on 12 NVIDIA V100 GPUs:
+Running `nvml_reader.py` will also generate two plots, one for memory and another for power usage over time. Here is an example for the `fbpic` PIC code running on 12 NVIDIA V100 GPUs:
 
 ![Memory usage](plots/mem.png)
 ![Power usage](plots/pow.png)
