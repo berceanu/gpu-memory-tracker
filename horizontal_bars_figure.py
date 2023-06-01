@@ -1,3 +1,13 @@
+"""
+This module defines classes for creating a horizontal bar chart figure using matplotlib.
+The main class is FigureHorizontalBars, which takes in data and labels, 
+and creates a figure with horizontal bars for each data point. 
+The bars can be split into multiple subplots if there are too many to fit in one.
+The module also defines the HorizontalBar and Tick classes, which are used to create and label the bars.
+The module includes functions for normalizing data and dividing an iterable into chunks.
+The main function, main(), generates a sample figure and saves it as a PNG file.
+"""
+
 import math
 import random
 import string
