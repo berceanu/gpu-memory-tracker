@@ -1,7 +1,7 @@
 """
 Periodically polls all the GPUs and writes usage info
 for all running Python processes to disk in CSV format.
-Usage: python src/nvml.py > /dev/null 2>&1 &
+Usage: nohup python nvml.py > /dev/null 2>&1 &
 """
 import pynvml
 import pathlib
