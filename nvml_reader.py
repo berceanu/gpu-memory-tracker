@@ -145,7 +145,7 @@ def Y_matrix(gpus_in_csv, df, time_index, quantity):
 
 def main():
     """Main entry point."""
-    path_to_csv = pathlib.Path.cwd() / "nvml_20210228-165008.csv"
+    path_to_csv = pathlib.Path.cwd() / "nvml_20230531-214237.csv"
 
     gpus_on_machine = get_gpus_on_machine()
     gpus_in_csv = get_gpus_in_csv(path_to_csv, gpus_on_machine)
@@ -171,8 +171,7 @@ def main():
     print(
         f"{path_to_csv.name} was recorded over the time interval from {df.index[0]} to {df.index[-1]}."
     )
-    df = df.loc["2021-02-28 17:30":"2021-02-28 22:30"]
-
+    df = df.loc["2023-05-31 21:44":"2023-06-01 12:14"]
     # ----------------------------------------------------------------------------------
 
     Y_labels = generate_y_labels(gpus_in_csv)
