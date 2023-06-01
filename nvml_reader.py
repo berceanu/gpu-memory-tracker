@@ -1,8 +1,11 @@
 """
 Reads GPU usage info from CSV file and plots it.
 Saves the figure(s) as PNG file(s).
-Usage: python nvml_reader.py filename.csv
+
+Usage: python nvml_reader.py -f nvml_20230531-214237.csv -s "2023-05-31 21:00" -e "2023-06-01 12:14"
+Or, using the long form of the flags: python nvml_reader.py --filename nvml_20230531-214237.csv --start_time "2023-05-31 21:00" --end_time "2023-06-01 12:14"
 """
+import argparse
 import collections.abc
 import pathlib
 from dataclasses import dataclass, field
@@ -145,7 +148,13 @@ def Y_matrix(gpus_in_csv, df, time_index, quantity):
 
 def main():
     """Main entry point."""
-    path_to_csv = pathlib.Path.cwd() / "nvml_20230531-214237.csv"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--filename', help="The CSV file name", required=True)
+    parser.add_argument('-s', '--start_time', help="Start time in the format 'YYYY-MM-DD HH:MM'", required=True)
+    parser.add_argument('-e', '--end_time', help="End time in the format 'YYYY-MM-DD HH:MM'", required=True)
+    args = parser.parse_args()
+
+    path_to_csv = pathlib.Path.cwd() / args.filename
 
     gpus_on_machine = get_gpus_on_machine()
     gpus_in_csv = get_gpus_in_csv(path_to_csv, gpus_on_machine)
@@ -171,7 +180,7 @@ def main():
     print(
         f"{path_to_csv.name} was recorded over the time interval from {df.index[0]} to {df.index[-1]}."
     )
-    df = df.loc["2023-05-31 21:46":"2023-06-01 12:12"]
+    df = df.loc[args.start_time:args.end_time]
     # ----------------------------------------------------------------------------------
 
     Y_labels = generate_y_labels(gpus_in_csv)
@@ -185,6 +194,7 @@ def main():
         suffix = {"used_gpu_memory_MiB": "mem", "used_power_W": "pow"}[quantity]
 
         Y = Y_matrix(gpus_in_csv=gpus_in_csv, df=df, time_index=dti, quantity=quantity)
+        np.nan_to_num(Y, copy=False)
 
         f = FigureHorizontalBars(
             X=np.linspace(start=0, stop=1, num=dti.size, endpoint=True),
