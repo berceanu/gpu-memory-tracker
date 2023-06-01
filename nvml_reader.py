@@ -171,7 +171,7 @@ def main():
     print(
         f"{path_to_csv.name} was recorded over the time interval from {df.index[0]} to {df.index[-1]}."
     )
-    df = df.loc["2023-05-31 21:44":"2023-06-01 12:14"]
+    df = df.loc["2023-05-31 21:46":"2023-06-01 12:12"]
     # ----------------------------------------------------------------------------------
 
     Y_labels = generate_y_labels(gpus_in_csv)
