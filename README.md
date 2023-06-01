@@ -2,6 +2,22 @@
 Tracks GPU memory usage over time as your simulation code is running
 
 ## Usage
+
+The code consists of two main scipts, `nvml.py` and `nvml_reader.py`, accompanied by the plotting module `horizontal_bars_figure.py`. 
+
+To launch the tracker:
+```console
+$ nohup python nvml.py > /dev/null 2>&1 &
+```
+This will run in the background and append GPU usage statistics to a `.csv` file once per minute.
+
+To plot the results from the `.csv` file:
+```console
+$ python nvml_reader.py --filename nvml_20230531-214237.csv --start_time "2023-05-31 21:00" --end_time "2023-06-01 12:14"
+```
+where you replace the filename, start and end times accordingly.
+
+Sample output:
 ```
                                          used_power_W                        used_gpu_memory_MiB                           
                                                   max        mean        std                 max          mean          std
@@ -21,8 +37,12 @@ GPU-fd00ec2b-bc85-ee6f-cf6a-a92103974651          373  221.120705  93.295847    
 nvml_20230531-214237.csv was recorded over the time interval from 2023-05-31 21:43:37.124133 to 2023-06-01 16:41:26.214446.
 ```
 
+Running `nvml_reader.py` will also generate two plots, one for memory and another for power usage over time, for the `fbpic` PIC code running on 12 NVIDIA V100 GPUs:
+
 ![Memory usage](plots/mem.png)
 ![Power usage](plots/pow.png)
+
+_Note:_ By default only `python` processes are tracked, this can be changed inside `nvml.py`.
 
 ## Installation
 
