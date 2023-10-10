@@ -3,25 +3,25 @@ Tracks GPU memory usage over time as your simulation code is running
 
 ## Usage
 
-The code consists of two main scipts, `nvml.py` and `nvml_reader.py`, accompanied by the plotting module `horizontal_bars_figure.py`. 
+The code consists of two main scipts, `nvml.py` and `nvml_reader.py`, accompanied by the plotting module `horizontal_bars_figure.py`.
 
 To launch the tracker:
 ```console
-$ nohup python nvml.py > /dev/null 2>&1 &
+$ pixi run tracker
 ```
 This will run in the background and append GPU usage statistics to a `.csv` file once per minute.
 
 To plot the results from the `.csv` file:
 ```console
-$ python nvml_reader.py -f nvml_20230531-214237.csv -s "2023-06-01 17:14" -e "2023-06-02 09:38"
+$ pixi run reader -f nvml_20230531-214237.csv -s "2023-06-01 17:14" -e "2023-06-02 09:38"
 ```
 where you replace the filename, start and end times accordingly.
 
 Sample output:
 ```
-                                         used_power_W                        used_gpu_memory_MiB                           
+                                         used_power_W                        used_gpu_memory_MiB
                                                   max        mean        std                 max          mean          std
-gpu_uuid                                                                                                                   
+gpu_uuid
 GPU-0435bc0c-f6d1-aea8-c293-34dc683f3bbf          367  224.735926  85.705688               24501  21163.419652  1200.555189
 GPU-1dfe3b5c-79a0-0422-f0d0-b22c6ded0af0          380  210.232344  93.814750               23831  20185.794268  1593.391977
 GPU-1e8ab7c4-1892-d5b2-cff3-27ed68ab0cb0          371  203.268168  90.280413               25917  19064.484135  1914.924620
@@ -41,7 +41,7 @@ GPU-fd00ec2b-bc85-ee6f-cf6a-a92103974651          381  216.900094  94.578045    
 nvml_20230531-214237.csv was recorded over the time interval from 2023-05-31 21:43:37.124133 to 2023-06-02 09:37:46.624458.
 ```
 
-Running `nvml_reader.py` will also generate two plots, one for memory and another for power usage over time. Here is an example for the `fbpic` PIC code running on 16 NVIDIA V100 GPUs:
+Running the reader will also generate two plots, one for memory and another for power usage over time. Here is an example for the `fbpic` PIC code running on 16 NVIDIA V100 GPUs:
 
 ![Memory usage](plots/mem.png)
 ![Power usage](plots/pow.png)
@@ -50,14 +50,14 @@ _Note:_ By default only `python` processes are tracked, this can be changed insi
 
 ## Installation
 
-Create a virtual environment, either using `conda` or `mamba`, via:
+We make use of the excellent [pixi](pixi.sh) package manager, which can be installed on Linux/macOS via
 
 ```console
-$ conda env create --file environment.yml
+$ curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
-or
+One can then clone this repo via
 
 ```console
-$ micromamba create -f environment.yml
+$ git clone git@github.com:berceanu/gpu-memory-tracker.git
 ```
