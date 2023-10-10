@@ -6,6 +6,9 @@ authors = ["Andrei Berceanu <andreicberceanu@gmail.com>"]
 channels = ["conda-forge"]
 platforms = ["linux-64", "linux-ppc64le"]
 
+[system-requirements]
+linux = "5.4.0"
+
 [tasks]
 tracker = "nohup python nvml.py > /dev/null 2>&1 &"
 reader = "python nvml_reader.py"
