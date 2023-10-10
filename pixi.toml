@@ -8,7 +8,7 @@ platforms = ["linux-64", "linux-ppc64le"]
 
 [tasks]
 tracker = "nohup python nvml.py > /dev/null 2>&1 &"
-reader = "python nvml_reader.py -f nvml_20230531-214237.csv -s \"2023-06-01 17:14\" -e \"2023-06-02 09:38\""
+reader = "python nvml_reader.py"
 
 [dependencies]
 python = ">=3.11,<3.12"
