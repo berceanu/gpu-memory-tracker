@@ -7,7 +7,7 @@ The code consists of two main scipts, `nvml.py` and `nvml_reader.py`, accompanie
 
 To launch the tracker:
 ```console
-$ pixi run tracker
+$ pixi run tracker &
 ```
 This will run in the background and append GPU usage statistics to a `.csv` file once per minute.
 
