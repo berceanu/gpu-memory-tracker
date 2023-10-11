@@ -10,7 +10,7 @@ platforms = ["linux-64", "linux-ppc64le"]
 linux = "5.4.0"
 
 [tasks]
-tracker = "nohup python nvml.py > /dev/null 2>&1 &"
+tracker = "nohup python nvml.py &> /dev/null &"
 reader = "python nvml_reader.py"
 
 [dependencies]
