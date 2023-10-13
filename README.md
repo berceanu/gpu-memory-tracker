@@ -1,3 +1,8 @@
+<a href="gpu_logo.png">
+    <img src="gpu_logo.png" alt="GPU logo" width="400"/>
+</a>
+
+
 # gpu-memory-tracker
 Tracks GPU memory usage over time as your simulation code is running
 
