@@ -1,5 +1,5 @@
 <a href="gpu_logo.png">
-    <img src="gpu_logo.png" alt="GPU logo" width="300"/>
+    <img src="gpu_logo.png" alt="GPU logo" width="200"/>
 </a>
 
 
